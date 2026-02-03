@@ -1,0 +1,305 @@
+/* Header.css */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: #ffffff;
+}
+
+/* Logo */
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Search Box */
+.search-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.search-input {
+    width: 300px;
+    padding: 10px 35px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+
+/* Buttons */
+.buttons-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.signup-button {
+    background: #ffffff;
+    border: 2px solid #000;
+
+}
+
+.login-button {
+    padding: 12px 20px;
+    background: #000;
+    color: #fff;
+    border: none;
+}
+
+
+
+
+/* HR Lines */
+.line {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 0;
+}
+
+/* Navbar Container */
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: #fff;
+}
+
+
+/* Brand Text */
+.brand {
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: #000;
+    text-decoration: none;
+}
+
+.brand .bold {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.brand .light {
+    font-style: italic;
+    font-size: 30px;
+    font-weight: 100;
+}
+
+/* Favorite Icon */
+.fav-icon {
+    font-size: 40px;
+    color: #e09595;
+    cursor: pointer;
+}
+
+
+
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 15px 25px;
+    border-bottom: 1px solid #ddd;
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+/* Menu */
+.menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+
+.menu-item {
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.arrow {
+    font-size: 20px;
+}
+
+/* Dropdown */
+.dropdown-box {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    width: 180px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    border-radius: 8px;
+}
+
+.dropdown-box1 {
+    width: 210px;
+}
+
+.dropdown-link {
+    display: block;
+    padding: 6px 5px;
+    font-size: 14px;
+    color: black;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.dropdown-link:hover {
+    background: #dbdada;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+/* Responsive */
+/* Large Screens */
+@media (min-width: 1400px) {
+
+    .header-container,
+    .navbar-container,
+    .navbar {
+        max-width: 1400px;
+        margin: auto;
+    }
+}
+
+
+/* Tablet */
+
+@media (max-width: 991px) {
+
+    /* Header */
+    .search-input {
+        width: 240px;
+    }
+
+    .buttons-wrapper {
+        gap: 8px;
+    }
+
+.signup-button {
+    background: #ffffff;
+    border: 2px solid #000;
+
+}
+
+.login-button {
+    padding: 12px 20px;
+    background: #000;
+    color: #fff;
+    border: none;
+}
+
+    /* Navbar */
+    .navbar {
+        gap: 30px;
+        padding: 14px 20px;
+    }
+
+    .brand .bold,
+    .brand .light {
+        font-size: 26px;
+    }
+
+    .fav-icon {
+        font-size: 34px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 576px) {
+
+    /* ===== Header ===== */
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .logo-wrapper {
+        justify-content: center;
+    }
+
+    .search-wrapper {
+        width: 100%;
+    }
+
+    .search-input {
+        width: 80%;
+    }
+
+    .buttons-wrapper {
+        width: 100%;
+        justify-content: center;
+    }
+
+.signup-button {
+    background: #ffffff;
+    border: 2px solid #000;
+
+}
+
+.login-button {
+    padding: 12px 20px;
+    background: #000;
+    color: #fff;
+    border: none;
+}
+    /* ===== Navbar ===== */
+    .brand .bold,
+    .brand .light {
+        font-size: 22px;
+    }
+
+    .fav-icon {
+        display: none;
+    }
+
+    /* ===== Main Navbar ===== */
+    .navbar {
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 12px 15px;
+    }
+
+    .menu-item {
+        font-size: 15px;
+    }
+
+    .dropdown-box {
+        transform: translateX(-20%);
+    }
+}
