@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "./Indoor.css";
+import "./indoor.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
