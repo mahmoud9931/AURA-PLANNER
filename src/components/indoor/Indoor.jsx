@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./indoor.css";
 import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import Footer from "../footer/Footer";
+import { Hearts } from 'react-loader-spinner';
 
 
 
 export default function Indoor() {
     const [venues, setVenues] = useState([]);
     const [loading, setLoading] = useState(true);
-    
+
     useEffect(() => {
-        axios
-            .get("https://vxgw8lkl-5000.uks1.devtunnels.ms/api/venues")
+        axios.get('/api/venues')
             .then((res) => {
                 setVenues(res.data.data || res.data);
                 setLoading(false);
@@ -24,39 +24,47 @@ export default function Indoor() {
     }, []);
 
     if (loading) {
-        return <p className="venues-loading">Loading venues...</p>;
+        return <Hearts
+height="80"
+width="80"
+color="#fd3df0"
+ariaLabel="hearts-loading"
+wrapperStyle={{ display: 'flex', justifyContent: 'center', alignItems: 'center',marginTop:'200px' }}
+wrapperClass=""
+visible={true}
+/>;
     }
 
     return (
-    <>
-        <Header />
-        <section className="venues-section">
-            <h2 className="venues-title">INDOOR</h2>
+        <>
+            <Header />
+            <section className="venues-section">
+                <h1 className="venues-title">INDOOR</h1>
 
-            <div className="venues-grid">
-                {venues.map((venue) => (
-                    <div className="venue-card" key={venue._id}>
-                        <img
-                            src={venue.image}
-                            alt={venue.name}
-                            className="venue-img"
-                        />
+                <div className="venues-grid">
+                    {venues.map((venue) => (
+                        <div className="venue-card" key={venue._id}>
+                            <img
+                                src={venue.image}
+                                alt={venue.name}
+                                className="venue-img"
+                            />
 
-                        <div className="venue-body">
-                            <h3 className="venue-name">{venue.name}</h3>
-                            <p className="venue-desc">{venue.description}</p>
+                            <div className="venue-body">
+                                <h3 className="venue-name">{venue.name}</h3>
+                                <p className="venue-desc">{venue.description}</p>
 
-                            <div className="venue-footer">
-                                <span className="venue-price">${venue.price}</span>
-                                <button className="venue-btn">Book Now</button>
+                                <div className="venue-footer">
+                                    <span className="venue-price">${venue.price}</span>
+                                    <button className="venue-btn">Book Now</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
-            </div>
-        </section>
+                    ))}
+                </div>
+            </section>
 
-        <Footer/>
-    </>
+            <Footer />
+        </>
     );
 }

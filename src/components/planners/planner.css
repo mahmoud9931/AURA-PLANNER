@@ -1,0 +1,116 @@
+.planners-page {
+    background: #d6d1d1;
+    min-height: 100vh;
+    padding: 20px 50px;
+    margin-bottom: 20px;
+}
+
+
+.planners-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* Card */
+.planner-card {
+    background: #f2f2f2;
+    border-radius: 12px;
+    padding: 20px;
+    transition: 0.3s ease;
+}
+
+.planner-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.avatar-box {
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    background: #d7c9f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-placeholder {
+    font-size: 30px;
+    color: #5a3dbf;
+}
+
+.rating {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.planner-name {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.planner-role {
+    font-style: italic;
+    color: #555;
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price {
+    font-weight: 500;
+}
+
+.availability {
+    font-size: 14px;
+    color: gray;
+}
+
+.more-btn {
+    background: black;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-size: 15px;
+}
+
+.more-btn:hover {
+    background: #333;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .planners-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .planners-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .planners-page {
+        padding: 30px 20px;
+    }
+}
