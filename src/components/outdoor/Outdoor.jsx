@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import Footer from "../footer/Footer";
 import { Hearts } from 'react-loader-spinner';
 
 
