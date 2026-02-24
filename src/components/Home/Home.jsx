@@ -6,7 +6,7 @@ import Footer from '../footer/Footer'
 export default function Home() {
     return (
         <><Header/>
-        <img src="/src/assets/home img.png" alt="" />
+        <img src="/src/assets/home-img.png" alt="" />
         <About/>
         <Footer/>
         </>

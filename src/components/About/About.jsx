@@ -9,7 +9,7 @@ function About() {
 
         {/* صورة واحدة */}
         <div className="about-hero">
-          <img src="/src/assets/about img.jpg" alt="about us" />
+          <img src="/src/assets/about-img.jpg" alt="about us" />
         </div>
 
         {/* النص */}

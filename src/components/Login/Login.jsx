@@ -58,7 +58,7 @@ function Login() {
     <div className="page">
       <div className="card">
         <div className="card-image">
-          <img src="/src/assets/login img.png" alt="Wedding tables" />
+          <img src="/src/assets/login-img.png" alt="Wedding tables" />
         </div>
 
         <div className="card-form">

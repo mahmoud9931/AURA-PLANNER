@@ -70,11 +70,11 @@ function SignUp() {
     <div className="page-container">
       <div className="signup-box">
         <div className="image-section">
-          <img src='/src/assets/signup img.png' alt="Wedding" className="side-image" />
+          <img src='/src/assets/signup-img.png' alt="Wedding" className="side-image" />
         </div>
 
         <div className="form-section">
-          <img src='/src/assets/logo signup.jpg' alt="logo" className="form-logo" />
+          <img src='/src/assets/logo-signup.jpg' alt="logo" className="form-logo" />
           <h2 className="form-title">SIGN UP</h2>
 
           <div className="input-group">
