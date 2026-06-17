@@ -1,0 +1,470 @@
+/* Premium & Modern Design System for Planner Details */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+.planner-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 30px;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #1e293b;
+  background-color: #fafafa;
+  direction: ltr;
+}
+
+/* Back Button */
+.back-btn {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  padding: 10px 22px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 25px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.back-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+  transform: translateX(-3px);
+  border-color: #cbd5e1;
+}
+
+/* Profile Card Container */
+.planner-profile-card {
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 40px;
+  margin-bottom: 35px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  border: 1px solid #f1f5f9;
+}
+
+.section-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: 0;
+  margin-bottom: 30px;
+  letter-spacing: -0.5px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 40px;
+  height: 4px;
+  background: linear-gradient(90deg, #ec4899, #f43f5e);
+  border-radius: 2px;
+}
+
+/* Profile Main Grid Info */
+.profile-main-info {
+  background: linear-gradient(135deg, #fdf2f8 0%, #fff1f2 100%);
+  padding: 35px;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+  border: 1px solid rgba(253, 242, 248, 0.7);
+}
+
+.profile-avatar-block {
+  flex: 0 0 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.avatar-circle {
+  width: 130px;
+  height: 130px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(244, 63, 94, 0.1);
+  border: 4px solid #ffffff;
+  overflow: hidden;
+}
+
+.avatar-circle svg {
+  color: #f43f5e;
+}
+
+.planner-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.3px;
+}
+
+.rating-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  padding: 6px 14px;
+  border-radius: 50px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.rating-stars .stars {
+  color: #fbbf24;
+  font-size: 15px;
+}
+
+.rating-stars .rating-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.profile-description-block {
+  flex: 1;
+}
+
+.bio-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #475569;
+  margin-bottom: 25px;
+}
+
+/* Meta info cards style */
+.planner-meta-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.meta-item {
+  background: #ffffff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #475569;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(241, 245, 249, 0.8);
+}
+
+.meta-item strong {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* Portfolio Section */
+.portfolio-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 20px;
+  letter-spacing: -0.2px;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.wedding-project-card {
+  background-color: #ffffff;
+  border: 1px solid #f1f5f9;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wedding-project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.08);
+}
+
+.project-image-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  position: relative;
+}
+
+.project-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.wedding-project-card:hover .project-image-wrapper img {
+  transform: scale(1.05);
+}
+
+.project-card-details {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-item {
+  margin: 0;
+  font-size: 13px;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-item strong {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* Reviews Card */
+.reviews-card {
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  border: 1px solid #f1f5f9;
+}
+
+.add-review-form {
+  margin-bottom: 35px;
+  background: #f8fafc;
+  padding: 25px;
+  border-radius: 16px;
+  border: 1px solid #f1f5f9;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.review-input-field {
+  flex: 1;
+  height: 50px;
+  padding: 0 20px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  font-size: 14.5px;
+  font-family: inherit;
+  outline: none;
+  background-color: #ffffff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.review-input-field:focus {
+  border-color: #f43f5e;
+  box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.1);
+}
+
+.star-rating-selector {
+  display: flex;
+  gap: 6px;
+}
+
+.star-clickable {
+  font-size: 28px;
+  color: #cbd5e1;
+  cursor: pointer;
+  transition: transform 0.1s, color 0.1s;
+}
+
+.star-clickable:hover {
+  transform: scale(1.15);
+}
+
+.star-clickable.active {
+  color: #fbbf24;
+}
+
+.submit-review-btn {
+  background: linear-gradient(135deg, #ec4899, #f43f5e);
+  color: white;
+  border: none;
+  padding: 0 28px;
+  height: 50px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+  box-shadow: 0 4px 12px rgba(244, 63, 94, 0.2);
+}
+
+.submit-review-btn:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+.submit-review-btn:active {
+  transform: translateY(0);
+}
+
+.status-message {
+  font-size: 14px;
+  color: #10b981;
+  margin-top: 12px;
+  margin-bottom: 0;
+  font-weight: 600;
+}
+
+/* Reviews List */
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.review-item-row {
+  display: flex;
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid #f1f5f9;
+  border-radius: 16px;
+  padding: 20px;
+  gap: 16px;
+  transition: box-shadow 0.2s;
+}
+
+.review-item-row:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.015);
+}
+
+.review-item-row:first-child {
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  background: linear-gradient(to right, #fffdfd, #ffffff);
+}
+
+.review-user-avatar {
+  flex: 0 0 48px;
+}
+
+.review-avatar-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.review-content-body {
+  flex: 1;
+  text-align: left;
+}
+
+.review-user-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+}
+
+.review-text-message {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0;
+}
+
+.review-item-rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #f8fafc;
+  padding: 6px 12px;
+  border-radius: 50px;
+  border: 1px solid #f1f5f9;
+  align-self: flex-start;
+}
+
+.mini-star {
+  color: #fbbf24;
+  font-size: 14px;
+}
+
+.mini-rating-val {
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .profile-main-info {
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+    padding: 25px;
+  }
+  
+  .profile-avatar-block {
+    flex: auto;
+  }
+  
+  .planner-meta-info {
+    grid-template-columns: 1fr;
+  }
+  
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .planner-container {
+    padding: 0 15px;
+  }
+  
+  .planner-profile-card,
+  .reviews-card {
+    padding: 25px;
+  }
+  
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+  
+  .star-rating-selector {
+    justify-content: center;
+  }
+}

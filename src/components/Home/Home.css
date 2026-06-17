@@ -1,0 +1,29 @@
+.home-hero {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.home-hero-img {
+  width: 100%;
+  max-width: 1100px;
+  height: auto;
+  max-height: 460px;
+  object-fit: cover;
+  border-radius: 15px;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .home-hero {
+    padding: 12px 16px;
+  }
+
+  .home-hero-img {
+    max-height: 260px;
+    border-radius: 12px;
+  }
+}

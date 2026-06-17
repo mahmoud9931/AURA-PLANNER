@@ -3,6 +3,7 @@ import axios from "axios";
 import Header from "../Header/Header";
 import Footer from "../footer/Footer";
 import { Hearts } from "react-loader-spinner";
+import { Link } from "react-router-dom";
 
 
 
@@ -24,14 +25,14 @@ export default function Graduation() {
 
     if (loading) {
         return <Hearts
-height="80"
-width="80"
-color="#fd3df0"
-ariaLabel="hearts-loading"
-wrapperStyle={{ display: 'flex', justifyContent: 'center', alignItems: 'center',marginTop:'200px' }}
-wrapperClass=""
-visible={true}
-/>;
+            height="80"
+            width="80"
+            color="#fd3df0"
+            ariaLabel="hearts-loading"
+            wrapperStyle={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '200px' }}
+            wrapperClass=""
+            visible={true}
+        />;
     }
 
     return (
@@ -55,7 +56,8 @@ visible={true}
 
                                 <div className="venue-footer">
                                     <span className="venue-price">${venue.price}</span>
-                                    <button className="venue-btn">Book Now</button>
+                                    <Link to={`/venues/graduations/${venue._id}`} className="venue-btn">Book Now</Link>
+
                                 </div>
                             </div>
                         </div>

@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import "./SignUp.css";
-import Swal from "sweetalert2";
-import { useNavigate } from 'react-router-dom';
+import signupImg from "../../assets/signup-img.png";
+import logo from "../../assets/logo-signup.jpg";
 
+import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { useNavigate } from "react-router-dom";
+
 const MySwal = withReactContent(Swal);
 
 function SignUp() {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const validateEmail = (value) => {
@@ -48,33 +52,50 @@ function SignUp() {
       return showError("Password must be at least 8 characters");
     }
 
-    if (!role) {
-      return showError("Please select a role");
-    }
+    setLoading(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 800));
+    const response = await fetch("/api/auth/register", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    name:userName,
+    email,
+    password,
+  }),
+});
+      
 
-      showSuccess("Sign Up Successful!").then(() => {
+      const data = await response.json();
+      console.log(data);
 
-        setTimeout(() => {
-          navigate('/')
-        }, 1000);
-      });
+      if (response.ok) {
+        await showSuccess("Sign Up Successful!");
+        navigate("/login");
+      } else {
+        showError(data.message || "Signup failed");
+      }
     } catch (err) {
+      console.error(err);
       showError("Something went wrong. Try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="page-container">
       <div className="signup-box">
+        
         <div className="image-section">
-          <img src='/src/assets/signup-img.png' alt="Wedding" className="side-image" />
+          <img src={signupImg} alt="Wedding" className="side-image" />
         </div>
 
         <div className="form-section">
-          <img src='/src/assets/logo-signup.jpg' alt="logo" className="form-logo" />
+          <img src={logo} alt="logo" className="form-logo" />
+
           <h2 className="form-title">SIGN UP</h2>
 
           <div className="input-group">
@@ -107,52 +128,22 @@ function SignUp() {
             />
           </div>
 
-          <div className="role-options">
-            <label>
-              <input
-                type="radio"
-                name="role"
-                value="client"
-                checked={role === "client"}
-                onChange={(e) => setRole(e.target.value)}
-              />
-              client
-            </label>
-
-            <label>
-              <input
-                type="radio"
-                name="role"
-                value="planner"
-                checked={role === "planner"}
-                onChange={(e) => setRole(e.target.value)}
-              />
-              planner
-            </label>
-
-            <label>
-              <input
-                type="radio"
-                name="role"
-                value="admin"
-                checked={role === "admin"}
-                onChange={(e) => setRole(e.target.value)}
-              />
-              Admin
-            </label>
-          </div>
-
           <p
             className="have-account"
-            onClick={() => (window.location.href = "/login")}
+            onClick={() => navigate("/login")}
           >
             Already have an account?
           </p>
 
-          <button className="signup-btn" onClick={handleSignUp}>
-            SIGN UP
+          <button
+            className="signup-btn"
+            onClick={handleSignUp}
+            disabled={loading}
+          >
+            {loading ? "SIGNING UP..." : "SIGN UP"}
           </button>
         </div>
+
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import "./indoor.css";
 import Header from "../Header/Header";
 import Footer from "../footer/Footer";
 import { Hearts } from 'react-loader-spinner';
+import { Link } from "react-router-dom";
 
 
 
@@ -56,7 +57,7 @@ visible={true}
 
                                 <div className="venue-footer">
                                     <span className="venue-price">${venue.price}</span>
-                                    <button className="venue-btn">Book Now</button>
+                                    <Link to={`/venues/indoor/${venue._id}`} className="venue-btn">Book Now</Link>
                                 </div>
                             </div>
                         </div>

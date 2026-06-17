@@ -1,23 +1,26 @@
 .page-container {
-  width: 100%;
-  height: auto;
+ width: 100%;
+ min-height: 100vh;
   background: #ffffff;
   display: flex;
   justify-content: center;
-  align-items: center;
+  
 }
 
 .signup-box {
-  width: 80%;
-  height: 85%;
+  width: 70%;
+  height: 80%;
   background: #fff;
   display: flex;
   overflow: hidden;
+
 
 }
 
 /* LEFT SIDE */
 .image-section {
+  margin-top: 80px;
+  
   width: 50%;
   height: 100%;
 }
@@ -26,6 +29,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  
 }
 
 /* RIGHT SIDE */
@@ -34,13 +38,15 @@
   background: #fff;
   padding: 50px 60px;
   position: relative;
+  margin-top: 50px;
+  margin-left: 30px;
 }
 
 /* اللوجو */
 .form-logo {
-  width: 80px;
+  width: 60px;
   position: absolute;
-  top: 20px;
+  top: 40px;
   right: 20px;
 }
 
@@ -104,9 +110,11 @@
 .signup-btn {
   width: 60%;
   padding: 15px;
-  margin: 0 auto;
+  margin: auto;
   display: block;
   border: none;
+
+  
 
   border-radius: 10px;
   background: #000;
