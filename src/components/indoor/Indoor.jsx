@@ -6,14 +6,40 @@ import Footer from "../footer/Footer";
 import { Hearts } from 'react-loader-spinner';
 import { Link } from "react-router-dom";
 
+const API_BASE = "https://faiyum-venues-backend-production.up.railway.app";
 
+const emptyForm = {
+    name: "",
+    description: "",
+    price: "",
+    image: "",
+    location: "",
+    capacity: "",
+};
 
 export default function Indoor() {
     const [venues, setVenues] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    // Modal states
+    const [showAddModal, setShowAddModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [selectedVenue, setSelectedVenue] = useState(null);
+    const [formData, setFormData] = useState(emptyForm);
+    const [submitting, setSubmitting] = useState(false);
+    const [formError, setFormError] = useState("");
 
     useEffect(() => {
-        axios.get('/api/venues')
+        const role = localStorage.getItem("role");
+        const token = localStorage.getItem("token");
+        setIsAdmin(role === "admin" && !!token);
+        fetchVenues();
+    }, []);
+
+    const fetchVenues = () => {
+        setLoading(true);
+        axios.get(`${API_BASE}/api/venues`)
             .then((res) => {
                 setVenues(res.data.data || res.data);
                 setLoading(false);
@@ -22,25 +48,123 @@ export default function Indoor() {
                 console.error(err);
                 setLoading(false);
             });
-    }, []);
+    };
 
+    const getAuthHeaders = () => ({
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+
+    // ─── ADD ────────────────────────────────────────────────────────────────────
+    const openAddModal = () => {
+        setFormData(emptyForm);
+        setFormError("");
+        setShowAddModal(true);
+    };
+
+    const handleAdd = async (e) => {
+        e.preventDefault();
+        setFormError("");
+        if (!formData.name || !formData.price) {
+            setFormError("Name and Price are required.");
+            return;
+        }
+        setSubmitting(true);
+        try {
+            await axios.post(
+                `${API_BASE}/api/venues`,
+                { ...formData, type: "indoor" },
+                getAuthHeaders()
+            );
+            setShowAddModal(false);
+            fetchVenues();
+        } catch (err) {
+            setFormError(err.response?.data?.message || "Failed to add venue.");
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
+    // ─── EDIT ───────────────────────────────────────────────────────────────────
+    const openEditModal = (venue) => {
+        setSelectedVenue(venue);
+        setFormData({
+            name: venue.name || "",
+            description: venue.description || "",
+            price: venue.price || "",
+            image: venue.image || "",
+            location: venue.location || "",
+            capacity: venue.capacity || "",
+        });
+        setFormError("");
+        setShowEditModal(true);
+    };
+
+    const handleEdit = async (e) => {
+        e.preventDefault();
+        setFormError("");
+        if (!formData.name || !formData.price) {
+            setFormError("Name and Price are required.");
+            return;
+        }
+        setSubmitting(true);
+        try {
+            await axios.put(
+                `${API_BASE}/api/venues/${selectedVenue._id}`,
+                { ...formData, type: "indoor" },
+                getAuthHeaders()
+            );
+            setShowEditModal(false);
+            fetchVenues();
+        } catch (err) {
+            setFormError(err.response?.data?.message || "Failed to update venue.");
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
+    // ─── DELETE ─────────────────────────────────────────────────────────────────
+    const handleDelete = async (venueId, venueName) => {
+        if (!window.confirm(`Are you sure you want to delete "${venueName}"? This action cannot be undone.`)) return;
+        try {
+            await axios.delete(`${API_BASE}/api/venues/${venueId}`, getAuthHeaders());
+            fetchVenues();
+        } catch (err) {
+            alert(err.response?.data?.message || "Failed to delete venue.");
+        }
+    };
+
+    // ─── FORM CHANGE ─────────────────────────────────────────────────────────────
+    const handleChange = (e) => {
+        setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    };
+
+    // ─── LOADING ─────────────────────────────────────────────────────────────────
     if (loading) {
-        return <Hearts
-height="80"
-width="80"
-color="#fd3df0"
-ariaLabel="hearts-loading"
-wrapperStyle={{ display: 'flex', justifyContent: 'center', alignItems: 'center',marginTop:'200px' }}
-wrapperClass=""
-visible={true}
-/>;
+        return (
+            <Hearts
+                height="80"
+                width="80"
+                color="#fd3df0"
+                ariaLabel="hearts-loading"
+                wrapperStyle={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '200px' }}
+                wrapperClass=""
+                visible={true}
+            />
+        );
     }
 
     return (
         <>
             <Header />
             <section className="venues-section">
-                <h1 className="venues-title">INDOOR</h1>
+                <div className="venues-title-row">
+                    <h1 className="venues-title">INDOOR</h1>
+                    {isAdmin && (
+                        <button className="admin-add-btn" onClick={openAddModal}>
+                            <span className="admin-add-icon">＋</span> Add New Venue
+                        </button>
+                    )}
+                </div>
 
                 <div className="venues-grid">
                     {venues.map((venue) => (
@@ -59,6 +183,23 @@ visible={true}
                                     <span className="venue-price">${venue.price}</span>
                                     <Link to={`/venues/indoor/${venue._id}`} className="venue-btn">Book Now</Link>
                                 </div>
+
+                                {isAdmin && (
+                                    <div className="admin-card-actions">
+                                        <button
+                                            className="admin-btn admin-btn-edit"
+                                            onClick={() => openEditModal(venue)}
+                                        >
+                                            ✏️ Edit
+                                        </button>
+                                        <button
+                                            className="admin-btn admin-btn-delete"
+                                            onClick={() => handleDelete(venue._id, venue.name)}
+                                        >
+                                            🗑️ Delete
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     ))}
@@ -66,6 +207,137 @@ visible={true}
             </section>
 
             <Footer />
+
+            {/* ─── ADD MODAL ──────────────────────────────────────────────────── */}
+            {showAddModal && (
+                <div className="modal-overlay" onClick={() => setShowAddModal(false)}>
+                    <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <h2 className="modal-title">➕ Add New Indoor Venue</h2>
+                            <button className="modal-close" onClick={() => setShowAddModal(false)}>✕</button>
+                        </div>
+                        <form className="modal-form" onSubmit={handleAdd}>
+                            <VenueFormFields formData={formData} handleChange={handleChange} />
+                            {formError && <p className="modal-error">{formError}</p>}
+                            <div className="modal-actions">
+                                <button type="button" className="modal-btn modal-btn-cancel" onClick={() => setShowAddModal(false)}>
+                                    Cancel
+                                </button>
+                                <button type="submit" className="modal-btn modal-btn-submit" disabled={submitting}>
+                                    {submitting ? "Saving…" : "Add Venue"}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* ─── EDIT MODAL ─────────────────────────────────────────────────── */}
+            {showEditModal && (
+                <div className="modal-overlay" onClick={() => setShowEditModal(false)}>
+                    <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <h2 className="modal-title">✏️ Edit Venue</h2>
+                            <button className="modal-close" onClick={() => setShowEditModal(false)}>✕</button>
+                        </div>
+                        <form className="modal-form" onSubmit={handleEdit}>
+                            <VenueFormFields formData={formData} handleChange={handleChange} />
+                            {formError && <p className="modal-error">{formError}</p>}
+                            <div className="modal-actions">
+                                <button type="button" className="modal-btn modal-btn-cancel" onClick={() => setShowEditModal(false)}>
+                                    Cancel
+                                </button>
+                                <button type="submit" className="modal-btn modal-btn-submit" disabled={submitting}>
+                                    {submitting ? "Updating…" : "Save Changes"}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+        </>
+    );
+}
+
+// ─── Reusable form fields ────────────────────────────────────────────────────
+function VenueFormFields({ formData, handleChange }) {
+    return (
+        <>
+            <div className="form-group">
+                <label className="form-label">Venue Name <span className="required">*</span></label>
+                <input
+                    className="form-input"
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="e.g. Crystal Hall"
+                    required
+                />
+            </div>
+            <div className="form-group">
+                <label className="form-label">Description</label>
+                <textarea
+                    className="form-input form-textarea"
+                    name="description"
+                    value={formData.description}
+                    onChange={handleChange}
+                    placeholder="Brief description of the venue…"
+                    rows={3}
+                />
+            </div>
+            <div className="form-row">
+                <div className="form-group">
+                    <label className="form-label">Price (EGP) <span className="required">*</span></label>
+                    <input
+                        className="form-input"
+                        type="number"
+                        name="price"
+                        value={formData.price}
+                        onChange={handleChange}
+                        placeholder="e.g. 5000"
+                        min="0"
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label className="form-label">Capacity</label>
+                    <input
+                        className="form-input"
+                        type="number"
+                        name="capacity"
+                        value={formData.capacity}
+                        onChange={handleChange}
+                        placeholder="e.g. 200"
+                        min="0"
+                    />
+                </div>
+            </div>
+            <div className="form-group">
+                <label className="form-label">Location</label>
+                <input
+                    className="form-input"
+                    type="text"
+                    name="location"
+                    value={formData.location}
+                    onChange={handleChange}
+                    placeholder="e.g. El Fayoum City Center"
+                />
+            </div>
+            <div className="form-group">
+                <label className="form-label">Image URL</label>
+                <input
+                    className="form-input"
+                    type="text"
+                    name="image"
+                    value={formData.image}
+                    onChange={handleChange}
+                    placeholder="https://…"
+                />
+                {formData.image && (
+                    <img src={formData.image} alt="preview" className="image-preview" onError={(e) => e.target.style.display = 'none'} />
+                )}
+            </div>
         </>
     );
 }

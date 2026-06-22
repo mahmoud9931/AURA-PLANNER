@@ -3,11 +3,50 @@
     padding: 0px 20px;
     max-width: 1200px;
     margin: auto;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+}
+
+/* ===== Title Row (title + add button) ===== */
+.venues-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 8px;
 }
 
 .venues-title {
-    margin-left: 5px;
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+/* ===== Admin Add Button ===== */
+.admin-add-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #BF0D4B, #e0306e);
+    color: #fff;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(191, 13, 75, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(191, 13, 75, 0.45);
+}
+
+.admin-add-icon {
+    font-size: 18px;
+    line-height: 1;
 }
 
 /* ===== Grid ===== */
@@ -93,11 +132,236 @@
     opacity: 0.85;
 }
 
+/* ===== Admin Card Action Buttons ===== */
+.admin-card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.admin-btn {
+    flex: 1;
+    border: none;
+    padding: 9px 12px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+}
+
+.admin-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+.admin-btn-edit {
+    background: #f0f7ff;
+    color: #1a6fd4;
+    border: 1px solid #b8d9f8;
+}
+
+.admin-btn-delete {
+    background: #fff0f3;
+    color: #c0143c;
+    border: 1px solid #f9bcc8;
+}
+
 /* ===== Loading ===== */
 .venues-loading {
     text-align: center;
     padding: 400px;
     font-size: 16px;
+}
+
+/* ===================================================================
+   MODAL STYLES
+=================================================================== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+    animation: fadeInOverlay 0.2s ease;
+}
+
+@keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.modal-box {
+    background: #fff;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+    animation: slideUpModal 0.25s ease;
+}
+
+@keyframes slideUpModal {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0);    }
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 24px 18px;
+    border-bottom: 1px solid #f0f0f0;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    border-radius: 20px 20px 0 0;
+    z-index: 1;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    color: #111;
+}
+
+.modal-close {
+    background: #f4f4f4;
+    border: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.modal-close:hover {
+    background: #e0e0e0;
+}
+
+/* ===== Form ===== */
+.modal-form {
+    padding: 20px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+}
+
+.required {
+    color: #BF0D4B;
+}
+
+.form-input {
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 13px;
+    font-size: 14px;
+    color: #111;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    border-color: #BF0D4B;
+    box-shadow: 0 0 0 3px rgba(191, 13, 75, 0.1);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.image-preview {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-top: 6px;
+    border: 1px solid #eee;
+}
+
+/* ===== Modal Error ===== */
+.modal-error {
+    background: #fff0f3;
+    border: 1px solid #f9bcc8;
+    color: #c0143c;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin: 0;
+}
+
+/* ===== Modal Buttons ===== */
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.modal-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+}
+
+.modal-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.modal-btn:not(:disabled):hover {
+    opacity: 0.87;
+    transform: translateY(-1px);
+}
+
+.modal-btn-cancel {
+    background: #f4f4f4;
+    color: #555;
+}
+
+.modal-btn-submit {
+    background: linear-gradient(135deg, #BF0D4B, #e0306e);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(191, 13, 75, 0.3);
 }
 
 /* ===== Responsive ===== */
@@ -109,6 +373,10 @@
     .venue-img {
         height: 160px;
     }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {
@@ -118,5 +386,14 @@
 
     .venue-name {
         font-size: 16px;
+    }
+
+    .modal-box {
+        max-height: 95vh;
+        border-radius: 16px;
+    }
+
+    .modal-actions {
+        flex-direction: column;
     }
 }

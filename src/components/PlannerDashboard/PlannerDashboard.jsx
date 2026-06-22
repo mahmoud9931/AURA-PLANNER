@@ -63,7 +63,7 @@ const PlannerDashboard = () => {
       <Hearts
         height="80"
         width="80"
-        color="#a855f7"
+        color="#fd3df0"
         ariaLabel="hearts-loading"
         wrapperStyle={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '200px' }}
         wrapperClass=""
